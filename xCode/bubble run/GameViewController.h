@@ -16,6 +16,7 @@ int CircleAppearanceRate;
     
     IBOutlet UIButton *StartGame;
     IBOutlet UIImageView *Circle1;
+    
     UIImageView *Pointblack;
     CGPoint startPoint;
     

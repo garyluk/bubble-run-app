@@ -18,7 +18,7 @@
     
     StartGame.hidden = YES;
     
-    Circle1Appearance = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(Circle1Appearing) userInfo:nil  repeats:YES];
+    Circle1Appearance = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(Circle1Appearing) userInfo:nil  repeats:NO];
 
     // Rate of Circle1 appearance 
     
