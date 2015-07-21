@@ -15,15 +15,70 @@
 @implementation GameViewController
 
 -(IBAction)StartGame:(id)sender{
-    
+    [self startGame];
     StartGame.hidden = YES;
-    
-    Circle1Appearance = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(Circle1Appearing) userInfo:nil  repeats:NO];
+    Circle1.hidden = NO;
+}
 
-    // Rate of Circle1 appearance 
+-(IBAction)PlayAgain:(id)sender{
+    
+    [self startGame];
     
 }
 
+-(void)EndGame{
+    
+    if (CountNumber > HighScoreNumber) {
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:CountNumber forKey:@"HighScoreSaved"];
+        
+    }
+    
+    PlayAgain.hidden = NO;
+    MainMenu.hidden = NO;
+    Pointblack.hidden = YES;
+    Circle1.hidden = YES;
+    
+    [Timer invalidate];
+    [Circle1Appearance invalidate];
+    
+    
+}
+
+-(void)startGame{
+    
+    PlayAgain.hidden = YES;
+    StartGame.hidden = YES;
+    Circle1.hidden = NO;
+    
+    
+    Timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TimerCount) userInfo:nil repeats:YES];
+    
+    
+    Circle1Appearance = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(Circle1Appearing) userInfo:nil  repeats:YES];
+    
+    // Rate of Circle1 appearance
+    
+    
+    if (CGRectIntersectsRect(Pointblack.frame, Circle1.frame)) {
+        [self EndGame];
+        
+    } //_collision code
+    
+}
+
+
+-(void)TimerCount{
+                 
+    CountNumber = CountNumber + 1;
+    TimerDisplay.text = [NSString stringWithFormat:@"%i", CountNumber];
+    
+    // Timer
+
+}
+
+             
+             
 -(void)Circle1Appearing{
    
     int xValue = arc4random() % 320;
@@ -32,6 +87,22 @@
     Circle1.center = CGPointMake(xValue, yValue);
     
     // Circle 1 appearing at random coordinates
+    
+
+}
+
+-(void)Circle1Growth{
+    
+    [UIView animateWithDuration:2
+                          delay:0
+     options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:(void (^)(void)) ^{
+                         Circle1.transform=CGAffineTransformMakeScale(5, 5);
+                     }
+                     completion:^(BOOL opposite) {
+                         
+                     }];
+    
 }
 
 
@@ -72,6 +143,16 @@
 
 - (void)viewDidLoad
 {
+    
+    PlayAgain.hidden = YES;
+    Circle1.hidden = YES;
+    MainMenu.hidden = YES;
+    
+    TimerDisplay = 0;
+    
+    HighScoreNumber = [[NSUserDefaults standardUserDefaults] integerForKey:@"HighScoreSaved"];
+    
+    
     [super viewDidLoad];
     
 

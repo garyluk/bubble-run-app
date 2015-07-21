@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+NSInteger HighScoreNumber;
+
 @interface ViewController : UIViewController
 
 {
     
     IBOutlet UIButton *PlayGame;
+    IBOutlet UILabel *HighScore;
     
-    
+
     
 }
 @end
