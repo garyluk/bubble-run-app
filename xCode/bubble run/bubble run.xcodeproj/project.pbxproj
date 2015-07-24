@@ -486,6 +486,7 @@
 				C0A02EBB1B5899A80045AB6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C0A02EBC1B5899A80045AB6C /* Build configuration list for PBXNativeTarget "bubble runTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +495,7 @@
 				C0A02EBE1B5899A80045AB6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

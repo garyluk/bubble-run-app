@@ -14,43 +14,14 @@
 
 @implementation GameViewController
 
--(IBAction)StartGame:(id)sender{
-    [self startGame];
-    StartGame.hidden = YES;
-    Circle1.hidden = NO;
-}
-
--(IBAction)PlayAgain:(id)sender{
-    
-    [self startGame];
-    
-}
-
--(void)EndGame{
-    
-    if (CountNumber > HighScoreNumber) {
-        
-        [[NSUserDefaults standardUserDefaults] setInteger:CountNumber forKey:@"HighScoreSaved"];
-        
-    }
-    
-    PlayAgain.hidden = NO;
-    MainMenu.hidden = NO;
-    Pointblack.hidden = YES;
-    Circle1.hidden = YES;
-    
-    [Timer invalidate];
-    [Circle1Appearance invalidate];
-    
-    
-}
-
--(void)startGame{
+-(IBAction)startgamemethod:(id)sender{
     
     PlayAgain.hidden = YES;
-    StartGame.hidden = YES;
+    StartGameButton.hidden = YES;
     Circle1.hidden = NO;
     
+    CountNumber = 0;
+    TimerDisplay.text = [NSString stringWithFormat:@"%i", CountNumber];
     
     Timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TimerCount) userInfo:nil repeats:YES];
     
@@ -59,6 +30,13 @@
     
     // Rate of Circle1 appearance
     
+    [self Collision];
+    
+}
+
+-(void)Collision{
+    
+    Circle1.center = CGPointMake(Circle1.center.x, Circle1.center.y);
     
     if (CGRectIntersectsRect(Pointblack.frame, Circle1.frame)) {
         [self EndGame];
@@ -66,6 +44,26 @@
     } //_collision code
     
 }
+
+-(void)EndGame{
+    
+
+    PlayAgain.hidden = NO;
+    MainMenu.hidden = NO;
+    Pointblack.hidden = YES;
+    Circle1.hidden = YES;
+    
+    [Timer invalidate];
+    [Circle1Appearance invalidate];
+    
+    if (CountNumber > HighScoreNumber) {
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:CountNumber forKey:@"HighScoreSaved"];
+        
+    }
+    
+}
+
 
 
 -(void)TimerCount{
@@ -147,8 +145,6 @@
     PlayAgain.hidden = YES;
     Circle1.hidden = YES;
     MainMenu.hidden = YES;
-    
-    TimerDisplay = 0;
     
     HighScoreNumber = [[NSUserDefaults standardUserDefaults] integerForKey:@"HighScoreSaved"];
     

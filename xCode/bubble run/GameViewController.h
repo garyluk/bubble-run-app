@@ -16,7 +16,7 @@ NSInteger HighScoreNumber;
 
 {
     
-    IBOutlet UIButton *StartGame;
+    IBOutlet UIButton *StartGameButton;
     IBOutlet UIImageView *Circle1;
     IBOutlet UILabel *TimerDisplay;
     IBOutlet UIButton *PlayAgain;
@@ -32,14 +32,12 @@ NSInteger HighScoreNumber;
 
 }
 
--(IBAction)StartGame:(id)sender;
--(IBAction)PlayAgain:(id)sender;
+-(IBAction)startgamemethod:(id)sender;
 -(void)EndGame;
 -(void)Circle1Appearing;
 -(void)Circle1Growth;
 -(void)TimerCount;
--(void)startGame;
-
+-(void)Collision;
 
 
 @property (nonatomic, retain) IBOutlet UIImageView *Circle1;
