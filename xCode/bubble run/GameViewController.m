@@ -36,8 +36,6 @@
 
 -(void)Collision{
     
-    Circle1.center = CGPointMake(Circle1.center.x, Circle1.center.y);
-    
     if (CGRectIntersectsRect(Pointblack.frame, Circle1.frame)) {
         [self EndGame];
         
